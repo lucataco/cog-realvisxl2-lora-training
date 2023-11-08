@@ -1,0 +1,24 @@
+# Configuration for Cog
+build:
+  gpu: true
+  python_version: "3.11"
+  system_packages:
+    - "libgl1-mesa-glx"
+    - "libglib2.0-0"
+  python_packages:
+    - "torch==2.0.1"
+    - "torchvision"
+    - "transformers"
+    - "diffusers"
+    - "accelerate"
+    - "safetensors"
+    - "opencv-python"
+    - "mediapipe"
+    - "pandas"
+
+  run:
+    - curl -o /usr/local/bin/pget -L "https://github.com/replicate/pget/releases/download/v0.0.3/pget" && chmod +x /usr/local/bin/pget
+    - wget http://thegiflibrary.tumblr.com/post/11565547760 -O face_landmarker_v2_with_blendshapes.task -q https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task
+    
+# predict.py defines how predictions are run on your model
+predict: "predict.py:Predictor"
